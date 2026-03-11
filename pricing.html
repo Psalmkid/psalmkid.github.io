@@ -8,6 +8,7 @@
     <title>Pricing - ICI Tech</title>
     <link rel="icon" type="image/png" href="assets/img/icon.png">
     <link rel="apple-touch-icon" href="assets/img/icon.png">
+    <link rel="preload" as="image" href="assets/img/hero%20img.jpg">
     <link rel="stylesheet" href="assets/styles.css">
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 </head>
@@ -16,18 +17,18 @@
     <nav class="navbar">
         <div class="container">
             <div class="logo"><a href="index.html">ICI Tech</a></div>
-            <ul class="nav-menu">
+            <ul class="nav-menu" id="nav-menu-list">
                 <li><a href="index.html" class="nav-link">Home</a></li>
                 <li><a href="services.html" class="nav-link">Services</a></li>
                 <li><a href="about.html" class="nav-link">About</a></li>
                 <li><a href="pricing.html" class="nav-link">Pricing</a></li>
                 <li><a href="contact.html" class="nav-link">Contact</a></li>
             </ul>
-            <div class="hamburger">
+            <button class="hamburger" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="nav-menu-list">
                 <span></span>
                 <span></span>
                 <span></span>
-            </div>
+            </button>
         </div>
     </nav>
 
@@ -88,29 +89,29 @@
             <h2 data-aos="fade-up">Frequently Asked Questions</h2>
             <div class="faq-accordion">
                 <div class="faq-item" data-aos="fade-up" data-aos-delay="100">
-                    <button class="faq-question">
+                    <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-1">
                         <span>Can I update the website myself?</span>
-                        <span class="faq-icon">+</span>
+                        <span class="faq-icon" aria-hidden="true">+</span>
                     </button>
-                    <div class="faq-answer">
+                    <div class="faq-answer" id="faq-answer-1">
                         <p>Yes! For our Standard and Advanced plans, we integrate a Content Management System (CMS) that allows you to easily update content without any coding knowledge.</p>
                     </div>
                 </div>
                 <div class="faq-item" data-aos="fade-up" data-aos-delay="200">
-                    <button class="faq-question">
+                    <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-2">
                         <span>How long does it take to build a website?</span>
-                        <span class="faq-icon">+</span>
+                        <span class="faq-icon" aria-hidden="true">+</span>
                     </button>
-                    <div class="faq-answer">
+                    <div class="faq-answer" id="faq-answer-2">
                         <p>A basic website can take 2-4 weeks, while more complex projects can take longer. We'll provide a detailed timeline after our initial consultation.</p>
                     </div>
                 </div>
                 <div class="faq-item" data-aos="fade-up" data-aos-delay="300">
-                    <button class="faq-question">
+                    <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-3">
                         <span>Do you provide ongoing support?</span>
-                        <span class="faq-icon">+</span>
+                        <span class="faq-icon" aria-hidden="true">+</span>
                     </button>
-                    <div class="faq-answer">
+                    <div class="faq-answer" id="faq-answer-3">
                         <p>Absolutely. We offer ongoing support and maintenance packages to ensure your website remains secure, up-to-date, and performs optimally.</p>
                     </div>
                 </div>
@@ -153,7 +154,7 @@
     </footer>
 
     <!-- Back to Top Button -->
-    <a href="#" class="back-to-top">↑</a>
+    <a href="#" class="back-to-top" aria-label="Back to top">↑</a>
 
     <script src="assets/script.js"></script>
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>

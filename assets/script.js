@@ -1,92 +1,85 @@
-// ============================================
-// Mobile Menu Toggle
-// ============================================
-
 document.addEventListener('DOMContentLoaded', function() {
+    // ============================================
+    // Mobile Menu & Navigation
+    // ============================================
     const hamburger = document.querySelector('.hamburger');
     const navMenu = document.querySelector('.nav-menu');
     const navLinks = document.querySelectorAll('.nav-link');
 
-    // Toggle menu on hamburger click
-    hamburger.addEventListener('click', function() {
-        navMenu.classList.toggle('active');
-        
-        // Animate hamburger
-        const spans = hamburger.querySelectorAll('span');
-        spans.forEach(span => {
-            span.style.transition = '0.3s';
+    if (hamburger && navMenu) {
+        // Toggle menu on hamburger click
+        hamburger.addEventListener('click', function() {
+            navMenu.classList.toggle('active');
+            hamburger.classList.toggle('active');
+            const isExpanded = navMenu.classList.contains('active');
+            hamburger.setAttribute('aria-expanded', isExpanded);
         });
-        
-        if (navMenu.classList.contains('active')) {
-            spans[0].style.transform = 'rotate(45deg) translate(10px, 10px)';
-            spans[1].style.opacity = '0';
-            spans[2].style.transform = 'rotate(-45deg) translate(7px, -7px)';
-        } else {
-            spans[0].style.transform = 'none';
-            spans[1].style.opacity = '1';
-            spans[2].style.transform = 'none';
-        }
-    });
 
-    // Navbar scroll effect
+        // Close menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const isClickInsideNav = navMenu.contains(event.target);
+            const isClickOnHamburger = hamburger.contains(event.target);
+            
+            if (!isClickInsideNav && !isClickOnHamburger && navMenu.classList.contains('active')) {
+                navMenu.classList.remove('active');
+                hamburger.classList.remove('active');
+                hamburger.setAttribute('aria-expanded', 'false');
+            }
+        });
+    }
+
+    // Handle nav link clicks (close menu and smooth scroll)
+    if (navLinks.length > 0) {
+        navLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                // Close mobile menu if it's open
+                if (navMenu && navMenu.classList.contains('active')) {
+                    navMenu.classList.remove('active');
+                    if (hamburger) {
+                        hamburger.classList.remove('active');
+                        hamburger.setAttribute('aria-expanded', 'false');
+                    }
+                }
+
+                // Handle smooth scrolling for hash links on the same page
+                const href = this.getAttribute('href');
+                const url = new URL(href, window.location.href);
+                if (url.pathname === window.location.pathname && url.hash) {
+                    e.preventDefault();
+                    const target = document.querySelector(url.hash);
+                    if (target) {
+                        // Use a timeout to ensure menu is closed before scrolling
+                        setTimeout(() => {
+                            target.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'start'
+                            });
+                        }, 50);
+                    }
+                }
+            });
+        });
+    }
+
+    // ============================================
+    // Navbar Scroll Effect
+    // ============================================
     const navbar = document.querySelector('.navbar');
     if (navbar) {
         window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) { // Add 'scrolled' class after 50px of scroll
+            if (window.scrollY > 50) {
                 navbar.classList.add('scrolled');
             } else {
                 navbar.classList.remove('scrolled');
             }
         });
     }
-
-    // Close menu when a link is clicked
-    navLinks.forEach(link => {
-        link.addEventListener('click', function() {
-            navMenu.classList.remove('active');
-            const spans = hamburger.querySelectorAll('span');
-            spans[0].style.transform = 'none';
-            spans[1].style.opacity = '1';
-            spans[2].style.transform = 'none';
-        });
-    });
-
-    // Close menu when clicking outside
-    document.addEventListener('click', function(event) {
-        const isClickInsideNav = navMenu.contains(event.target);
-        const isClickOnHamburger = hamburger.contains(event.target);
-        
-        if (!isClickInsideNav && !isClickOnHamburger && navMenu.classList.contains('active')) {
-            navMenu.classList.remove('active');
-            const spans = hamburger.querySelectorAll('span');
-            spans[0].style.transform = 'none';
-            spans[1].style.opacity = '1';
-            spans[2].style.transform = 'none';
-        }
-    });
-
-    // Smooth scrolling for navigation links
-    navLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-            const href = this.getAttribute('href');
-            if (href.startsWith('#')) {
-                e.preventDefault();
-                const target = document.querySelector(href);
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            }
-        });
-    });
-
-    // Back to Top button functionality
+    
+    // ============================================
+    // Back to Top Button
+    // ============================================
     const backToTopButton = document.querySelector('.back-to-top');
-
     if (backToTopButton) {
-        // Show/hide button on scroll
         window.addEventListener('scroll', () => {
             if (window.scrollY > 300) {
                 backToTopButton.classList.add('visible');
@@ -95,7 +88,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
 
-        // Smooth scroll to top on click
         backToTopButton.addEventListener('click', (e) => {
             e.preventDefault();
             window.scrollTo({
@@ -104,94 +96,148 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
     }
-});
 
-// ============================================
-// CTA Button - Link to Contact Page
-// ============================================
-
-document.addEventListener('DOMContentLoaded', function() {
+    // ============================================
+    // CTA Button - Link to Contact Page
+    // ============================================
     const ctaButtons = document.querySelectorAll('.cta-button');
-
     ctaButtons.forEach(button => {
-        // Only handle buttons that don't have href attributes (like form submit buttons)
-        if (!button.hasAttribute('href')) {
-            button.addEventListener('click', function(e) {
-                // If it's a submit button, let the form handle it
-                if (button.type === 'submit') {
-                    return;
-                }
-                // Otherwise, redirect to contact page
+        if (!button.hasAttribute('href') && button.type !== 'submit') {
+            button.addEventListener('click', function() {
                 window.location.href = 'contact.html';
             });
         }
     });
-});
 
-// ============================================
-// Contact Form Handling
-// ============================================
-
-document.addEventListener('DOMContentLoaded', function() {
+    // ============================================
+    // Contact Form Handling
+    // ============================================
     const contactForm = document.getElementById('contactForm');
-    
     if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Get form values
-            const name = contactForm.querySelector('input[type="text"]').value;
-            const email = contactForm.querySelector('input[type="email"]').value;
-            const company = contactForm.querySelectorAll('input[type="text"]')[1].value;
-            const service = contactForm.querySelector('select').value;
-            const message = contactForm.querySelector('textarea').value;
-            
-            // Basic validation
-            if (!name || !email || !service || !message) {
-                alert('Please fill in all required fields.');
-                return;
-            }
-            
-            // Email validation
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(email)) {
-                alert('Please enter a valid email address.');
-                return;
-            }
-            
-            // Prepare email content
-            const subject = `New Inquiry from ${name} - ${service}`;
-            const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\nCompany: ${company}\nService: ${service}\n\nMessage:\n${message}`);
-            
-            window.location.href = `mailto:ici.texh@gmail.com?subject=${encodeURIComponent(subject)}&body=${body}`;
-            
-            // Show success message
-            const originalHTML = contactForm.innerHTML;
-            contactForm.innerHTML = `
-                <div style="text-align: center; padding: 2rem;">
-                    <h3 style="color: var(--white); margin-bottom: 1rem;">Thank You!</h3>
-                    <p style="color: var(--white); margin-bottom: 1rem;">Your message has been received. We'll get back to you within 24 hours.</p>
-                    <button type="button" class="cta-button" id="resetForm">Send Another Message</button>
-                </div>
-            `;
-            
-            // Reset form button
-            document.getElementById('resetForm').addEventListener('click', function() {
-                contactForm.innerHTML = originalHTML;
-                // Re-attach event listeners
-                document.addEventListener('DOMContentLoaded', setupContactForm);
+        const originalFormHTML = contactForm.innerHTML;
+
+        const setupContactFormListener = (form) => {
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const name = form.querySelector('input[name="name"]').value;
+                const email = form.querySelector('input[name="email"]').value;
+                const company = form.querySelector('input[name="company"]').value;
+                const service = form.querySelector('select[name="service_type"]').value;
+                const message = form.querySelector('textarea[name="message"]').value;
+                
+                if (!name || !email || !service || !message) {
+                    alert('Please fill in all required fields.');
+                    return;
+                }
+                
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(email)) {
+                    alert('Please enter a valid email address.');
+                    return;
+                }
+                
+                const subject = `New Inquiry from ${name} - ${service}`;
+                const body = `Name: ${name}\nEmail: ${email}\nCompany: ${company}\nService: ${service}\n\nMessage:\n${message}`;
+                
+                window.location.href = `mailto:ici.texh@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+                
+                form.innerHTML = `
+                    <div style="text-align: center; padding: 2rem;">
+                        <h3 style="color: var(--white); margin-bottom: 1rem;">Thank You!</h3>
+                        <p style="color: var(--white); margin-bottom: 1rem;">Your message has been received. We'll get back to you within 24 hours.</p>
+                        <button type="button" class="cta-button" id="resetForm">Send Another Message</button>
+                    </div>
+                `;
+                
+                document.getElementById('resetForm').addEventListener('click', function() {
+                    form.innerHTML = originalFormHTML;
+                    setupContactFormListener(form); // Re-attach listener to the restored form
+                });
             });
-            
-            // In a real application, you would send this data to a server
-            console.log({
-                name,
-                email,
-                company,
-                service,
-                message
-            });
-        });
+        };
+
+        setupContactFormListener(contactForm);
     }
+
+    // ============================================
+    // Price Tooltip on Mobile Scroll
+    // ============================================
+    if (window.matchMedia("(max-width: 768px)").matches) {
+        const priceWrappers = document.querySelectorAll('.price-button-wrapper');
+        if (priceWrappers.length > 0) {
+            const priceObserverOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.8
+            };
+
+            const priceObserver = new IntersectionObserver(function(entries, observer) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('show-price');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, priceObserverOptions);
+
+            priceWrappers.forEach(wrapper => {
+                priceObserver.observe(wrapper);
+            });
+        }
+    }
+
+    // ============================================
+    // FAQ Accordion
+    // ============================================
+    const faqItems = document.querySelectorAll('.faq-item');
+    faqItems.forEach(item => {
+        const question = item.querySelector('.faq-question');
+        if (question) {
+            question.addEventListener('click', () => {
+                const isExpanded = item.classList.contains('active');
+                question.setAttribute('aria-expanded', String(!isExpanded));
+                item.classList.toggle('active');
+            });
+        }
+    });
+
+    // ============================================
+    // Active Navigation Link on Current Page
+    // ============================================
+    const updateActiveNav = () => {
+        const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+        let currentSectionId = '';
+        const sections = document.querySelectorAll('section[id]');
+
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            if (window.pageYOffset >= sectionTop - 150) {
+                currentSectionId = section.getAttribute('id');
+            }
+        });
+
+        navLinks.forEach(link => {
+            const linkHref = link.getAttribute('href');
+            const linkPage = linkHref.split('#')[0];
+            const isCurrentPage = (linkPage === currentPage) || (linkPage === '' && currentPage === 'index.html');
+
+            if (isCurrentPage) {
+                if (link.hash === `#${currentSectionId}`) {
+                    document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+                    link.classList.add('active');
+                } else if (!currentSectionId && !link.hash) {
+                    document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+                    link.classList.add('active');
+                }
+            } else {
+                link.classList.remove('active');
+            }
+        });
+    };
+
+    updateActiveNav();
+    window.addEventListener('scroll', updateActiveNav);
 });
 
 // ============================================
@@ -211,111 +257,4 @@ window.addEventListener('load', function() {
             }, 100);
         }
     }
-});
-
-// ============================================
-// Add Animation on Scroll
-// ============================================
-
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-};
-
-const observer = new IntersectionObserver(function(entries) {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.style.animation = 'fadeInUp 0.6s ease forwards';
-            observer.unobserve(entry.target);
-        }
-    });
-}, observerOptions);
-
-// Observe service cards, feature cards, and other content
-document.addEventListener('DOMContentLoaded', function() {
-    const animateElements = document.querySelectorAll(
-        '.service-card, .feature, .price-card, .step, .benefit-item, .client-item'
-    );
-    
-    animateElements.forEach((element, index) => {
-        element.style.opacity = '0';
-        element.style.animation = 'none';
-        element.style.animationDelay = `${index * 0.05}s`;
-        observer.observe(element);
-    });
-});
-
-// ============================================
-// Add Fade-In Animation Styles
-// ============================================
-
-const style = document.createElement('style');
-style.textContent = `
-    @keyframes fadeInUp {
-        from {
-            opacity: 0;
-            transform: translateY(30px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-`;
-document.head.appendChild(style);
-
-// ============================================
-// FAQ Accordion
-// ============================================
-
-document.addEventListener('DOMContentLoaded', function() {
-    const faqItems = document.querySelectorAll('.faq-item');
-
-    faqItems.forEach(item => {
-        const question = item.querySelector('.faq-question');
-        if (question) {
-            question.addEventListener('click', () => {
-                item.classList.toggle('active');
-            });
-        }
-    });
-});
-
-// ============================================
-// Active Navigation Link on Current Page
-// ============================================
-
-document.addEventListener('DOMContentLoaded', function() {
-    const navLinks = document.querySelectorAll('.nav-link');
-    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
-
-    navLinks.forEach(link => {
-        const href = link.getAttribute('href');
-        if (href === currentPage) {
-            link.classList.add('active');
-        } else {
-            link.classList.remove('active');
-        }
-    });
-
-    // Keep the scroll-based highlighting for same-page sections (like on services.html)
-    window.addEventListener('scroll', function() {
-        let current = '';
-
-        const sections = document.querySelectorAll('section[id]');
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop;
-            const sectionHeight = section.clientHeight;
-            if (pageYOffset >= sectionTop - 200) {
-                current = section.getAttribute('id');
-            }
-        });
-
-        navLinks.forEach(link => {
-            const href = link.getAttribute('href');
-            if (href.startsWith('#') && href === `#${current}`) {
-                link.classList.add('active');
-            }
-        });
-    });
 });

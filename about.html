@@ -8,6 +8,7 @@
     <title>About Us - ICI Tech</title>
     <link rel="icon" type="image/png" href="assets/img/icon.png">
     <link rel="apple-touch-icon" href="assets/img/icon.png">
+    <link rel="preload" as="image" href="assets/img/hero%20img.jpg">
     <link rel="stylesheet" href="assets/styles.css">
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 </head>
@@ -16,18 +17,18 @@
     <nav class="navbar">
         <div class="container">
             <div class="logo"><a href="index.html">ICI Tech</a></div>
-            <ul class="nav-menu">
+            <ul class="nav-menu" id="nav-menu-list">
                 <li><a href="index.html" class="nav-link">Home</a></li>
                 <li><a href="services.html" class="nav-link">Services</a></li>
                 <li><a href="about.html" class="nav-link">About</a></li>
                 <li><a href="pricing.html" class="nav-link">Pricing</a></li>
                 <li><a href="contact.html" class="nav-link">Contact</a></li>
             </ul>
-            <div class="hamburger">
+            <button class="hamburger" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="nav-menu-list">
                 <span></span>
                 <span></span>
                 <span></span>
-            </div>
+            </button>
         </div>
     </nav>
 
@@ -155,7 +156,7 @@
     </footer>
 
     <!-- Back to Top Button -->
-    <a href="#" class="back-to-top">↑</a>
+    <a href="#" class="back-to-top" aria-label="Back to top">↑</a>
 
     <script src="assets/script.js"></script>
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>

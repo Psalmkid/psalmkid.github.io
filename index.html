@@ -8,6 +8,7 @@
     <title>ICI Tech - Web Design & Development Services</title>
     <link rel="icon" type="image/png" href="assets/img/icon.png">
     <link rel="apple-touch-icon" href="assets/img/icon.png">
+    <link rel="preload" as="image" href="assets/img/hero%20img.jpg">
     <link rel="stylesheet" href="assets/styles.css">
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 </head>
@@ -16,18 +17,18 @@
     <nav class="navbar">
         <div class="container">
             <div class="logo"><a href="index.html">ICI Tech</a></div>
-            <ul class="nav-menu">
+            <ul class="nav-menu" id="nav-menu-list">
                 <li><a href="index.html" class="nav-link">Home</a></li>
                 <li><a href="services.html" class="nav-link">Services</a></li>
                 <li><a href="about.html" class="nav-link">About</a></li>
                 <li><a href="pricing.html" class="nav-link">Pricing</a></li>
                 <li><a href="contact.html" class="nav-link">Contact</a></li>
             </ul>
-            <div class="hamburger">
+            <button class="hamburger" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="nav-menu-list">
                 <span></span>
                 <span></span>
                 <span></span>
-            </div>
+            </button>
         </div>
     </nav>
 
@@ -76,6 +77,7 @@
     <!-- Mission & Vision -->
     <section class="mission-vision">
         <div class="container">
+            <h2 class="visually-hidden">Our Mission and Vision</h2>
             <div class="mission-vision-grid">
                 <div class="mission-card" data-aos="fade-right">
                     <h3>Our Mission</h3>
@@ -95,35 +97,35 @@
             <h2 data-aos="fade-up">Technologies We Use</h2>
             <div class="tech-grid">
                 <div class="tech-item" data-aos="fade-up" data-aos-delay="100">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5" loading="lazy" width="50" height="50">
                     <p>HTML5</p>
                 </div>
                 <div class="tech-item" data-aos="fade-up" data-aos-delay="150">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3" loading="lazy" width="50" height="50">
                     <p>CSS3</p>
                 </div>
                 <div class="tech-item" data-aos="fade-up" data-aos-delay="200">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" loading="lazy" width="50" height="50">
                     <p>JavaScript</p>
                 </div>
                 <div class="tech-item" data-aos="fade-up" data-aos-delay="250">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React" loading="lazy" width="50" height="50">
                     <p>React</p>
                 </div>
                 <div class="tech-item" data-aos="fade-up" data-aos-delay="300">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js" loading="lazy" width="50" height="50">
                     <p>Node.js</p>
                 </div>
                 <div class="tech-item" data-aos="fade-up" data-aos-delay="350">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" alt="MongoDB">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" alt="MongoDB" loading="lazy" width="50" height="50">
                     <p>MongoDB</p>
                 </div>
                 <div class="tech-item" data-aos="fade-up" data-aos-delay="400">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git" loading="lazy" width="50" height="50">
                     <p>Git</p>
                 </div>
                 <div class="tech-item" data-aos="fade-up" data-aos-delay="450">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" alt="Figma">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" alt="Figma" loading="lazy" width="50" height="50">
                     <p>Figma</p>
                 </div>
             </div>
@@ -174,7 +176,7 @@
     </footer>
 
     <!-- Back to Top Button -->
-    <a href="#" class="back-to-top">↑</a>
+    <a href="#" class="back-to-top" aria-label="Back to top">↑</a>
 
     <script src="assets/script.js"></script>
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>

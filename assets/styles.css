@@ -12,9 +12,9 @@
     /* New Multi-color Dark Palette */
     --dark-bg: #011627; /* Very Dark Blue - Main BG */
     --card-bg: #0D253F; /* Deep Navy - For cards and sections */
-    --primary-color: #8A4FFF;   /* Vibrant Purple */
+    --primary-color: #6200EE;   /* Accessible Purple */
     --secondary-color: #00C4FF; /* Bright Cyan */
-    --accent-color: #FF2E88;    /* Hot Pink/Magenta */
+    --accent-color: #D9006C;    /* Accessible Pink/Magenta */
     --accent-color-2: #38E4A8;   /* Bright Green */
     
     --text-light: #E0E6F1;      /* Brighter light text */
@@ -47,6 +47,18 @@ body.no-bg-image {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 1.5rem;
+}
+
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
 }
 
 /* ============================================
@@ -107,8 +119,15 @@ body.no-bg-image {
     transition: color 0.3s ease;
 }
 
-.nav-link:hover {
+.nav-link:hover,
+.nav-link:focus {
     color: var(--accent-color);
+}
+
+.nav-link:focus {
+    outline: 2px solid var(--accent-color);
+    outline-offset: 5px;
+    border-radius: 2px;
 }
 
 .nav-link.active {
@@ -120,6 +139,8 @@ body.no-bg-image {
     display: none;
     flex-direction: column;
     cursor: pointer;
+    background: transparent;
+    border: none;
 }
 
 .hamburger span {
@@ -128,6 +149,18 @@ body.no-bg-image {
     background-color: var(--white); /* Changed for dark navbar */
     margin: 5px 0;
     transition: 0.3s;
+}
+
+.hamburger.active span:nth-child(1) {
+    transform: translateY(13px) rotate(45deg);
+}
+
+.hamburger.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+    transform: translateY(-13px) rotate(-45deg);
 }
 
 /* ============================================
@@ -171,11 +204,17 @@ body.no-bg-image {
     text-decoration: none;
 }
 
-.cta-button:hover {
+.cta-button:hover,
+.cta-button:focus {
     background-color: var(--secondary-color);
     transform: translateY(-2px);
     color: var(--dark-bg);
     box-shadow: var(--shadow-lg);
+}
+
+.cta-button:focus {
+    outline: 2px solid var(--secondary-color);
+    outline-offset: 2px;
 }
 
 /* Rainbow animation for special CTA button */
@@ -191,7 +230,8 @@ body.no-bg-image {
     animation: rainbow-bg 8s ease infinite;
 }
 
-.cta-rainbow:hover {
+.cta-rainbow:hover,
+.cta-rainbow:focus {
     background-color: transparent; /* Prevents background color change from .cta-button:hover */
     color: var(--white); /* Keeps text color consistent on hover */
     animation-duration: 2s; /* Speeds up the animation on hover */
@@ -219,6 +259,7 @@ body.no-bg-image {
     max-width: 800px;
     margin: 1rem auto;
     line-height: 1.8;
+    text-align: justify;
 }
 
 /* ============================================
@@ -406,7 +447,7 @@ body.no-bg-image {
     font-size: 1.1rem;
 }
 
-.pricing-cards {
+.price-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 2rem;
@@ -501,8 +542,18 @@ body.no-bg-image {
     z-index: 10;
 }
 
-.price-button-wrapper:hover::before,
-.price-button-wrapper:hover::after {
+/* Show tooltip on hover for desktop */
+@media (min-width: 769px) {
+    .price-button-wrapper:hover::before,
+    .price-button-wrapper:hover::after {
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+/* Class to show tooltip on mobile (triggered by JS on scroll) */
+.price-button-wrapper.show-price::before,
+.price-button-wrapper.show-price::after {
     opacity: 1;
     visibility: visible;
 }
@@ -705,10 +756,62 @@ body.no-bg-image {
     margin-bottom: 2rem;
 }
 
-.contact-form {
-    max-width: 700px;
+.contact-wrapper {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 3rem;
+    max-width: 1000px;
+    margin: 3rem auto 0;
     text-align: left;
-    margin: 0 auto;
+}
+
+.contact-info {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 2.5rem;
+    border-radius: 5px;
+}
+
+.contact-info h3 {
+    margin-bottom: 2rem;
+    color: var(--white);
+}
+
+.contact-info-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.contact-info-item:last-child {
+    margin-bottom: 0;
+}
+
+.contact-info-item svg {
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+    margin-top: 5px;
+    color: var(--accent-color-2);
+}
+
+.contact-info-item p {
+    margin: 0;
+    line-height: 1.7;
+    color: var(--text-light);
+}
+
+.contact-info a {
+    color: var(--white);
+    word-break: break-all;
+}
+
+.contact-info a:hover {
+    color: var(--accent-color-2);
+}
+
+.contact-form {
+    text-align: left;
 }
 
 .form-group {
@@ -720,11 +823,11 @@ body.no-bg-image {
 .contact-form textarea {
     width: 100%;
     padding: 12px 15px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border: 1px solid var(--border-color);
     border-radius: 5px;
     font-family: inherit;
     font-size: 1rem;
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: var(--dark-bg);
     color: var(--white);
 }
 
@@ -868,9 +971,16 @@ body.no-bg-image {
     transform: translateY(0);
 }
 
-.back-to-top:hover {
+.back-to-top:hover,
+.back-to-top:focus {
     background-color: #25a296; /* Darker accent */
     transform: translateY(-3px);
+    color: var(--white);
+}
+
+.back-to-top:focus {
+    outline: 2px solid #25a296;
+    outline-offset: 2px;
 }
 
 /* === Styles for New Sections === */
@@ -958,6 +1068,10 @@ body.no-bg-image {
    ============================================ */
 
 @media (max-width: 768px) {
+    body {
+        background-attachment: scroll; /* Improve performance on mobile */
+    }
+
     .hamburger {
         display: flex;
     }
@@ -1000,7 +1114,7 @@ body.no-bg-image {
 
     .services-grid,
     .features-grid,
-    .pricing-cards {
+    .price-grid {
         grid-template-columns: 1fr;
     }
 
@@ -1045,6 +1159,11 @@ body.no-bg-image {
 
     .hero-content p {
         font-size: 0.95rem;
+    }
+
+    .introduction p {
+        font-size: 0.95rem;
+        text-align: left;
     }
 
 
@@ -1106,6 +1225,12 @@ body.no-bg-image {
     text-align: left;
 }
 
+.faq-question:focus {
+    outline: 2px solid var(--secondary-color);
+    outline-offset: 2px;
+    border-radius: 4px;
+}
+
 .faq-question span:first-child { /* The text */
     color: var(--white);
     font-size: 1.2rem;
@@ -1120,6 +1245,7 @@ body.no-bg-image {
     color: var(--secondary-color);
     transition: transform 0.3s ease;
     flex-shrink: 0;
+    user-select:none;
 }
 
 .faq-answer {
