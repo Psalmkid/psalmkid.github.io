@@ -240,16 +240,10 @@ body.no-bg-image {
 /* ============================================
    Introduction Section
    ============================================ */
-
-.introduction {
-    padding: 5rem 1.5rem;
-    background-color: var(--card-bg);
-    text-align: center;
-}
-
 .introduction h2 {
     font-size: 2.5rem;
-    margin-bottom: 1.5rem;
+    text-align: center;
+    margin-bottom: 2rem;
     color: var(--secondary-color);
 }
 
@@ -1069,7 +1063,14 @@ body.no-bg-image {
 
 @media (max-width: 768px) {
     body {
-        background-attachment: scroll; /* Improve performance on mobile */
+        background-attachment: fixed;
+        background-position: center;
+        background-size: cover;
+    }
+
+    /* Reduce section padding for tablet */
+    .introduction, .services, .why-choose, .pricing, .process, .benefits, .contact, .core-services, .tech-stack, .mission-vision, .faq {
+        padding: 4rem 1.5rem;
     }
 
     .hamburger {
@@ -1118,8 +1119,13 @@ body.no-bg-image {
         grid-template-columns: 1fr;
     }
 
+    .price-card {
+        padding: 2rem;
+    }
+
     .price-card.featured {
-        transform: scale(1);
+        transform: none;
+        box-shadow: var(--shadow);
     }
 
     .price-card.featured:hover {
@@ -1140,6 +1146,11 @@ body.no-bg-image {
 }
 
 @media (max-width: 480px) {
+    /* Make base font smaller on mobile */
+    body {
+        font-size: 0.95rem;
+    }
+
     .navbar .container {
         padding: 0.8rem 1rem;
     }
@@ -1149,24 +1160,28 @@ body.no-bg-image {
     }
 
     .hero {
-        padding: 50px 1rem;
-        min-height: 350px;
+        padding: 3rem 1rem;
+        min-height: auto;
     }
 
     .hero-content h1 {
-        font-size: 1.5rem;
+        font-size: 1.6rem;
     }
 
     .hero-content p {
-        font-size: 0.95rem;
+        font-size: 0.9rem;
     }
 
     .introduction p {
-        font-size: 0.95rem;
+        font-size: 0.9rem;
         text-align: left;
     }
 
-
+    /* Reduce section padding further for mobile */
+    .introduction, .services, .why-choose, .pricing, .process, .benefits, .contact, .core-services, .tech-stack, .mission-vision, .faq {
+        padding: 3rem 1rem;
+    }
+    
     .introduction h2,
     .services h2,
     .why-choose h2,
@@ -1175,9 +1190,17 @@ body.no-bg-image {
     .benefits h2,
     .contact h2,
     .core-services h2,
-    .tech-stack h2 {
-        font-size: 1.8rem;
+    .tech-stack h2,
+    .faq h2 {
+        font-size: 1.5rem;
+        margin-bottom: 1.5rem;
     }
+
+    /* Compact cards and elements */
+    .service-card, .price-card, .feature, .step, .mission-card, .vision-card, .client-item {
+        padding: 1.5rem;
+    }
+
     .process-steps {
         grid-template-columns: 1fr;
     }
@@ -1189,6 +1212,11 @@ body.no-bg-image {
     .clients-grid {
         grid-template-columns: repeat(2, 1fr);
     }
+
+    /* Specific pricing adjustments */
+    .price-card h3 {
+        font-size: 1.3rem;
+    }
 }
 
 /* ============================================
@@ -1198,6 +1226,13 @@ body.no-bg-image {
 .faq {
     padding: 5rem 1.5rem;
     background-color: var(--dark-bg);
+}
+
+.faq h2 {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 3rem;
+    color: var(--secondary-color);
 }
 
 .faq-accordion {
@@ -1245,6 +1280,7 @@ body.no-bg-image {
     color: var(--secondary-color);
     transition: transform 0.3s ease;
     flex-shrink: 0;
+    -webkit-user-select: none;
     user-select:none;
 }
 
