@@ -671,30 +671,30 @@ document.addEventListener('DOMContentLoaded', function() {
     // ============================================
     // Loader Logic
     // ============================================
-    const loader = document.getElementById('loader');
-    const loaderBar = document.querySelector('.loader-progress-bar');
-    const loaderPercent = document.getElementById('loaderPercent');
+const loader = document.getElementById('loader');
+const loaderBar = document.querySelector('.loader-progress-bar');
+const loaderPercent = document.getElementById('loaderPercent');
 
-    if (loader && loaderBar && loaderPercent) {
-        let loadProgress = 0;
-        // Run for exactly 10 seconds (10000ms)
-        // Update every 100ms -> 100 steps -> 1% increment per step
-        const loadInterval = setInterval(() => {
-            loadProgress += 1;
-            loaderBar.style.width = `${loadProgress}%`;
-            loaderPercent.textContent = `${loadProgress}%`;
+if (loader && loaderBar && loaderPercent) {
+    let loadProgress = 0;
 
-            if (loadProgress >= 100) {
-                clearInterval(loadInterval);
-                setTimeout(() => {
-                    loader.classList.add('hidden');
-                    startTypewriter(); // Start typing after loader finishes
-                }, 500);
-            }
-        }, 100);
-    } else {
-        startTypewriter(); // Run immediately if no loader (e.g. other pages)
-    }
+    // 3500ms / 100 steps = 35ms per step
+    const loadInterval = setInterval(() => {
+        loadProgress += 1;
+        loaderBar.style.width = `${loadProgress}%`;
+        loaderPercent.textContent = `${loadProgress}%`;
+
+        if (loadProgress >= 100) {
+            clearInterval(loadInterval);
+            setTimeout(() => {
+                loader.classList.add('hidden');
+                startTypewriter();
+            }, 200); // slight delay for smooth finish
+        }
+    }, 35);
+} else {
+    startTypewriter();
+}
 
     // ============================================
     // Electric Border Injection
