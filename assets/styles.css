@@ -1442,7 +1442,7 @@ body.no-bg-image {
     /* Default Variables */
     --electric-border-color: var(--primary-color);
     --electric-light-color: #FFB347; /* Fallback light orange */
-    --gradient-color: rgba(241, 90, 34, 0.4);
+    --gradient-color: rgba(241, 90, 34, 0.05);
     --f: url(#🌀↖️); /* Default filter */
 
     background: linear-gradient(
@@ -1453,8 +1453,8 @@ body.no-bg-image {
     ),
     linear-gradient(
         to bottom,
-        rgba(0,0,0,0.2),
-        rgba(0,0,0,0.2)
+        rgba(0,0,0,0.02),
+        rgba(0,0,0,0.02)
     );
     
     /* Try to use modern color syntax if supported */
@@ -1542,9 +1542,9 @@ body.no-bg-image {
     position: absolute;
     inset: 0;
     border-radius: 1.5em;
-    filter: blur(32px);
+    filter: blur(8px);
     transform: scale(1.1);
-    opacity: 0.3;
+    opacity: 0.05;
     z-index: -1;
     background: linear-gradient(
         -30deg,
@@ -1552,6 +1552,31 @@ body.no-bg-image {
         transparent,
         var(--electric-border-color)
     );
+}
+
+.electric-card::before {
+    content: "";
+    position: absolute;
+    inset: -2px;
+    border-radius: inherit;
+    z-index: 0;
+
+    background: linear-gradient(
+        90deg,
+        var(--electric-border-color),
+        var(--electric-light-color),
+        var(--electric-border-color)
+    );
+    opacity: 0.1;
+
+    background-size: 200% 100%;
+    animation: electricMove 3s linear infinite;
+}
+
+@keyframes electricMove {
+    to {
+        background-position: 200% 0;
+    }
 }
 
 .electric-card .content-container {
