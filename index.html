@@ -13,6 +13,69 @@
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 </head>
 <body>
+    <!-- SVG Filter for Electric Borders -->
+    <svg style="position: absolute; width: 0; height: 0; overflow: hidden;" aria-hidden="true">
+      <defs>
+        <!-- Filter 1: Turbulence Top/Bottom -->
+        <filter id="🌀↖️" colorInterpolationFilters="sRGB" x="-20%" y="-20%" width="140%" height="140%">
+          <feTurbulence type="turbulence" baseFrequency="0.02" numOctaves="10" result="noise1" seed="1" />
+          <feOffset in="noise1" dx="0" dy="0" result="offsetNoise1">
+            <animate attributeName="dy" values="700; 0" dur="6s" repeatCount="indefinite" calcMode="linear" />
+          </feOffset>
+          <feTurbulence type="turbulence" baseFrequency="0.02" numOctaves="10" result="noise2" seed="1" />
+          <feOffset in="noise2" dx="0" dy="0" result="offsetNoise2">
+            <animate attributeName="dy" values="0; -700" dur="6s" repeatCount="indefinite" calcMode="linear" />
+          </feOffset>
+          <feTurbulence type="turbulence" baseFrequency="0.02" numOctaves="10" result="noise1" seed="2" />
+          <feOffset in="noise1" dx="0" dy="0" result="offsetNoise3">
+            <animate attributeName="dx" values="490; 0" dur="6s" repeatCount="indefinite" calcMode="linear" />
+          </feOffset>
+          <feTurbulence type="turbulence" baseFrequency="0.02" numOctaves="10" result="noise2" seed="2" />
+          <feOffset in="noise2" dx="0" dy="0" result="offsetNoise4">
+            <animate attributeName="dx" values="0; -490" dur="6s" repeatCount="indefinite" calcMode="linear" />
+          </feOffset>
+          <feComposite in="offsetNoise1" in2="offsetNoise2" result="part1" />
+          <feComposite in="offsetNoise3" in2="offsetNoise4" result="part2" />
+          <feBlend in="part1" in2="part2" mode="color-dodge" result="combinedNoise" />
+          <feDisplacementMap in="SourceGraphic" in2="combinedNoise" scale="30" xChannelSelector="R" yChannelSelector="B" />
+        </filter>
+        
+        <!-- Filter 2: Hue Rotate -->
+        <filter id="🌀🎨" colorInterpolationFilters="sRGB" x="-20%" y="-20%" width="140%" height="140%">
+          <feTurbulence type="turbulence" baseFrequency="0.02" numOctaves="7" />
+          <feColorMatrix type="hueRotate" result="pt1">
+            <animate attributeName="values" values="0;360;" dur=".6s" repeatCount="indefinite" calcMode="paced" />
+          </feColorMatrix>
+          <feComposite />
+          <feTurbulence type="turbulence" baseFrequency="0.03" numOctaves="7" seed="5" />
+          <feColorMatrix type="hueRotate" result="pt2">
+            <animate attributeName="values" values="0; 333; 199; 286; 64; 168; 256; 157; 360;" dur="5s" repeatCount="indefinite" calcMode="paced" />
+          </feColorMatrix>
+          <feBlend in="pt1" in2="pt2" mode="normal" result="combinedNoise" />
+          <feDisplacementMap in="SourceGraphic" scale="30" xChannelSelector="R" yChannelSelector="B" />
+        </filter>
+      </defs>
+    </svg>
+
+        <!-- Loader Screen -->
+    <div class="loader-screen" id="loader">
+        <div class="loader-content">
+            <div class="loader-code-text">
+                <div class="code-line">const ICI-TECH = {</div>
+                <div class="code-line">  loading: true,</div>
+                <div class="code-line">  status: 'initializing...'</div>
+                <div class="code-line">};</div>
+            </div>
+            <div class="loader-spinner-wrapper">
+                <div class="loader-spinner"></div>
+            </div>
+            <div class="loader-progress-wrapper">
+                <div class="loader-progress-bar"></div>
+            </div>
+            <div class="loader-percentage" id="loaderPercent">0%</div>
+        </div>
+    </div>
+
     <!-- Navigation -->
     <nav class="navbar">
         <div class="container">
@@ -170,7 +233,7 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2026 ICI Tech. All rights reserved.</p>
+                <p>Copyright &copy; 2026 ICI Tech. All rights reserved.</p>
             </div>
         </div>
     </footer>
@@ -178,6 +241,8 @@
     <!-- Back to Top Button -->
     <a href="#" class="back-to-top" aria-label="Back to top">↑</a>
 
+    <script src="https://cdn.jsdelivr.net/npm/three@0.154.0/build/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
     <script src="assets/script.js"></script>
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
