@@ -26,6 +26,70 @@
     --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.4);
 }
 
+/* ============================================
+   Electric Border Animations (Safari Compatible)
+   ============================================ */
+
+@keyframes electric-glow {
+    0% {
+        box-shadow: 0 0 5px rgba(241, 90, 34, 0.5), 
+                    0 0 10px rgba(241, 90, 34, 0.3),
+                    inset 0 0 5px rgba(241, 90, 34, 0.1);
+    }
+    50% {
+        box-shadow: 0 0 15px rgba(241, 90, 34, 0.8), 
+                    0 0 25px rgba(241, 90, 34, 0.5),
+                    inset 0 0 10px rgba(241, 90, 34, 0.2);
+    }
+    100% {
+        box-shadow: 0 0 5px rgba(241, 90, 34, 0.5), 
+                    0 0 10px rgba(241, 90, 34, 0.3),
+                    inset 0 0 5px rgba(241, 90, 34, 0.1);
+    }
+}
+
+@keyframes electric-border-pulse {
+    0%, 100% {
+        border-color: rgba(241, 90, 34, 0.6);
+    }
+    50% {
+        border-color: rgba(255, 140, 66, 0.9);
+    }
+}
+
+@supports (-webkit-appearance: none) {
+    /* Safari-specific adjustments for smoother performance */
+    @keyframes electric-glow-safari {
+        0% {
+            box-shadow: 0 0 8px rgba(241, 90, 34, 0.4);
+        }
+        50% {
+            box-shadow: 0 0 16px rgba(241, 90, 34, 0.7);
+        }
+        100% {
+            box-shadow: 0 0 8px rgba(241, 90, 34, 0.4);
+        }
+    }
+}
+
+/* Utility Classes for Electric Borders */
+.electric-border {
+    border: 2px solid rgba(241, 90, 34, 0.6);
+    border-radius: 0.5rem;
+    animation: electric-border-pulse 2s ease-in-out infinite;
+}
+
+.electric-glow {
+    animation: electric-glow 3s ease-in-out infinite;
+}
+
+/* Safari-specific class */
+@supports (-webkit-appearance: none) {
+    .electric-glow {
+        animation: electric-glow-safari 3s ease-in-out infinite;
+    }
+}
+
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     line-height: 1.6;
