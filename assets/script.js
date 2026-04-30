@@ -677,8 +677,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     if (loader && loaderBar && loaderPercent) {
         let loadProgress = 0;
-        // Run for exactly 5 seconds (5000ms)
-        // Update every 50ms -> 100 steps -> 1% increment per step
+        // Run for exactly 10 seconds (10000ms)
+        // Update every 100ms -> 100 steps -> 1% increment per step
         const loadInterval = setInterval(() => {
             loadProgress += 1;
             loaderBar.style.width = `${loadProgress}%`;
@@ -691,7 +691,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     startTypewriter(); // Start typing after loader finishes
                 }, 500);
             }
-        }, 50);
+        }, 100);
     } else {
         startTypewriter(); // Run immediately if no loader (e.g. other pages)
     }
