@@ -1,211 +1,164 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="ICI Tech Pricing - Affordable Web Design and Development Services. Flexible pricing for businesses and communities.">
-    <meta name="keywords" content="web design pricing, web development costs, affordable websites, business website pricing">
+    <meta name="description" content="ICI Tech Pricing — clear packages and scalable plans for website, platform, and application delivery.">
+    <meta name="keywords" content="pricing, website packages, SaaS pricing, web development costs, enterprise web pricing">
     <title>Pricing - ICI Tech</title>
     <link rel="icon" type="image/png" href="assets/img/icon.png">
     <link rel="apple-touch-icon" href="assets/img/icon.png">
-    <link rel="preload" as="image" href="assets/img/hero%20img.jpg">
     <link rel="stylesheet" href="assets/styles.css">
-    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 </head>
 <body>
-    <!-- SVG Filter for Electric Borders -->
-    <svg style="position: absolute; width: 0; height: 0; overflow: hidden;" aria-hidden="true">
-      <defs>
-        <!-- Filter 1: Turbulence Top/Bottom -->
-        <filter id="🌀↖️" colorInterpolationFilters="sRGB" x="-20%" y="-20%" width="140%" height="140%">
-          <feTurbulence type="turbulence" baseFrequency="0.02" numOctaves="10" result="noise1" seed="1" />
-          <feOffset in="noise1" dx="0" dy="0" result="offsetNoise1">
-            <animate attributeName="dy" values="700; 0" dur="6s" repeatCount="indefinite" calcMode="linear" />
-          </feOffset>
-          <feTurbulence type="turbulence" baseFrequency="0.02" numOctaves="10" result="noise2" seed="1" />
-          <feOffset in="noise2" dx="0" dy="0" result="offsetNoise2">
-            <animate attributeName="dy" values="0; -700" dur="6s" repeatCount="indefinite" calcMode="linear" />
-          </feOffset>
-          <feTurbulence type="turbulence" baseFrequency="0.02" numOctaves="10" result="noise1" seed="2" />
-          <feOffset in="noise1" dx="0" dy="0" result="offsetNoise3">
-            <animate attributeName="dx" values="490; 0" dur="6s" repeatCount="indefinite" calcMode="linear" />
-          </feOffset>
-          <feTurbulence type="turbulence" baseFrequency="0.02" numOctaves="10" result="noise2" seed="2" />
-          <feOffset in="noise2" dx="0" dy="0" result="offsetNoise4">
-            <animate attributeName="dx" values="0; -490" dur="6s" repeatCount="indefinite" calcMode="linear" />
-          </feOffset>
-          <feComposite in="offsetNoise1" in2="offsetNoise2" result="part1" />
-          <feComposite in="offsetNoise3" in2="offsetNoise4" result="part2" />
-          <feBlend in="part1" in2="part2" mode="color-dodge" result="combinedNoise" />
-          <feDisplacementMap in="SourceGraphic" in2="combinedNoise" scale="30" xChannelSelector="R" yChannelSelector="B" />
-        </filter>
-        
-        <!-- Filter 2: Hue Rotate -->
-        <filter id="🌀🎨" colorInterpolationFilters="sRGB" x="-20%" y="-20%" width="140%" height="140%">
-          <feTurbulence type="turbulence" baseFrequency="0.02" numOctaves="7" />
-          <feColorMatrix type="hueRotate" result="pt1">
-            <animate attributeName="values" values="0;360;" dur=".6s" repeatCount="indefinite" calcMode="paced" />
-          </feColorMatrix>
-          <feComposite />
-          <feTurbulence type="turbulence" baseFrequency="0.03" numOctaves="7" seed="5" />
-          <feColorMatrix type="hueRotate" result="pt2">
-            <animate attributeName="values" values="0; 333; 199; 286; 64; 168; 256; 157; 360;" dur="5s" repeatCount="indefinite" calcMode="paced" />
-          </feColorMatrix>
-          <feBlend in="pt1" in2="pt2" mode="normal" result="combinedNoise" />
-          <feDisplacementMap in="SourceGraphic" scale="30" xChannelSelector="R" yChannelSelector="B" />
-        </filter>
-      </defs>
-    </svg>
-
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="container">
-            <div class="logo"><a href="index.html">ICI Tech</a></div>
-            <ul class="nav-menu" id="nav-menu-list">
-                <li><a href="index.html" class="nav-link">Home</a></li>
-                <li><a href="services.html" class="nav-link">Services</a></li>
-                <li><a href="about.html" class="nav-link">About</a></li>
-                <li><a href="pricing.html" class="nav-link">Pricing</a></li>
-                <li><a href="contact.html" class="nav-link">Contact</a></li>
+    <header class="site-header">
+        <nav class="navbar" aria-label="Primary navigation">
+            <div class="container nav-inner">
+                <a class="logo" href="index.html">ICI Tech</a>
+                <button class="hamburger" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="nav-menu-list">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <ul class="nav-menu" id="nav-menu-list">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="pricing.html">Pricing</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+                <a class="nav-cta" href="contact.html">Request pricing</a>
+            </div>
+        </nav>
+        <section class="hero hero-bg">
+            <ul class="circles">
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
             </ul>
-            <button class="hamburger" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="nav-menu-list">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-        </div>
-    </nav>
-
-    <!-- Pricing Section -->
-    <section id="pricing" class="pricing">
-        <div class="container">
-            <h2>Our Pricing</h2>
-            <p class="pricing-intro">Flexible pricing for businesses and communities. Choose a plan that fits your needs.</p>
-            <div class="price-grid">
-                <div class="price-card" data-aos="fade-up">
-                    <h3>Basic Website</h3>
-                    <p class="price-tier">Portfolio or Small Business</p>
-                    <ul>
-                        <li>5-10 Pages</li>
-                        <li>Mobile Responsive</li>
-                        <li>Contact Form</li>
-                        <li>Basic SEO</li>
-                    </ul>
-                    <div class="price-button-wrapper" data-price="Ranges from ₦50,000 - ₦200,000">
-                        <a href="contact.html" class="price-button">Learn More</a>
+            <div class="container hero-grid">
+                <div class="hero-copy">
+                    <p class="eyebrow">Pricing</p>
+                    <h1>Pricing for modern digital products that scale with your business.</h1>
+                    <p>Choose a plan built for websites, product launches, or enterprise-scale systems with transparent scope, polished execution, and premium support.</p>
+                    <div class="hero-actions">
+                        <a class="cta-button" href="contact.html">Request a proposal</a>
+                        <a class="cta-secondary" href="#pricing-plans">View plans</a>
                     </div>
                 </div>
-                <div class="price-card featured" data-aos="fade-up" data-aos-delay="100">
-                    <h3>Standard Website</h3>
-                    <p class="price-tier">Business, Church, School</p>
-                    <ul>
-                        <li>10-20 Pages</li>
-                        <li>Mobile Responsive</li>
-                        <li>Advanced Features</li>
-                        <li>SEO Optimization</li>
-                        <li>CMS Integration</li>
-                    </ul>
-                    <div class="price-button-wrapper" data-price="Ranges from ₦100,000 - ₦500,000">
-                        <a href="contact.html" class="price-button">Learn More</a>
-                    </div>
-                </div>
-                <div class="price-card" data-aos="fade-up" data-aos-delay="200">
-                    <h3>Advanced Website</h3>
-                    <p class="price-tier">E-Commerce & Web Apps</p>
-                    <ul>
-                        <li>Unlimited Pages</li>
-                        <li>Full Mobile Experience</li>
-                        <li>Payment Integration</li>
-                        <li>Database Management</li>
-                        <li>Ongoing Support</li>
-                    </ul>
-                    <div class="price-button-wrapper" data-price="Contact us for a custom quote">
-                        <a href="contact.html" class="price-button">Get Custom Quote</a>
+                <div class="hero-panel">
+                    <div class="hero-panel-card">
+                        <div class="panel-label">Recommended</div>
+                        <h2 class="panel-title">Growth platform package</h2>
+                        <p class="panel-copy">Designed for SaaS, fintech, and fast-growth brands that need a secure, conversion-first product experience.</p>
+                        <div class="panel-meta">
+                            <span>API-driven launch</span>
+                            <span>Sales-ready delivery</span>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- FAQ Section -->
-    <section class="faq">
-        <div class="container">
-            <h2 data-aos="fade-up">Frequently Asked Questions</h2>
-            <div class="faq-accordion">
-                <div class="faq-item" data-aos="fade-up" data-aos-delay="100">
-                    <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-1">
-                        <span>Can I update the website myself?</span>
-                        <span class="faq-icon" aria-hidden="true">+</span>
-                    </button>
-                    <div class="faq-answer" id="faq-answer-1">
-                        <p>Yes! For our Standard and Advanced plans, we integrate a Content Management System (CMS) that allows you to easily update content without any coding knowledge.</p>
+        </section>
+    </header>
+    <main>
+        <section class="pricing" id="pricing-plans">
+            <div class="container">
+                <h2>Flexible packages for every stage of growth</h2>
+                <p class="pricing-intro">Choose a plan with clear scope, delivery milestones, and premium product quality.</p>
+                <div class="price-grid">
+                    <div class="price-card">
+                        <h3>Core launch</h3>
+                        <p class="price-tier">Corporate websites and campaign landing pages</p>
+                        <ul>
+                            <li>Up to 8 pages</li>
+                            <li>Landing page optimization</li>
+                            <li>Analytics setup</li>
+                        </ul>
+                        <p class="price-tag">Starts at $8,500</p>
+                        <a href="contact.html" class="price-button">Book a call</a>
                     </div>
-                </div>
-                <div class="faq-item" data-aos="fade-up" data-aos-delay="200">
-                    <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-2">
-                        <span>How long does it take to build a website?</span>
-                        <span class="faq-icon" aria-hidden="true">+</span>
-                    </button>
-                    <div class="faq-answer" id="faq-answer-2">
-                        <p>A basic website can take 2-4 weeks, while more complex projects can take longer. We'll provide a detailed timeline after our initial consultation.</p>
+                    <div class="price-card featured">
+                        <h3>Growth platform</h3>
+                        <p class="price-tier">SaaS, fintech, and product-led web systems</p>
+                        <ul>
+                            <li>Custom dashboards</li>
+                            <li>API & payment integration</li>
+                            <li>Conversion-first UX</li>
+                        </ul>
+                        <p class="price-tag">Starts at $18,000</p>
+                        <a href="contact.html" class="price-button">Speak with sales</a>
                     </div>
-                </div>
-                <div class="faq-item" data-aos="fade-up" data-aos-delay="300">
-                    <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-3">
-                        <span>Do you provide ongoing support?</span>
-                        <span class="faq-icon" aria-hidden="true">+</span>
-                    </button>
-                    <div class="faq-answer" id="faq-answer-3">
-                        <p>Absolutely. We offer ongoing support and maintenance packages to ensure your website remains secure, up-to-date, and performs optimally.</p>
+                    <div class="price-card">
+                        <h3>Enterprise system</h3>
+                        <p class="price-tier">Long-term platform partnerships</p>
+                        <ul>
+                            <li>Architecture & strategy</li>
+                            <li>Continuous delivery</li>
+                            <li>Dedicated support</li>
+                        </ul>
+                        <p class="price-tag">Custom pricing</p>
+                        <a href="contact.html" class="price-button">Get a quote</a>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
+        </section>
+        <section class="faq">
+            <div class="container">
+                <h2>Common questions</h2>
+                <div class="faq-accordion">
+                    <div class="faq-item">
+                        <button class="faq-question" aria-expanded="false" aria-controls="faq-price-1">
+                            <span>How do you decide plan scope?</span>
+                            <span class="faq-icon" aria-hidden="true">+</span>
+                        </button>
+                        <div class="faq-answer" id="faq-price-1">
+                            <p>We define scope based on your strategic goals, target customers, and technical requirements so your product launch is built for growth.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question" aria-expanded="false" aria-controls="faq-price-2">
+                            <span>What is included in the launch process?</span>
+                            <span class="faq-icon" aria-hidden="true">+</span>
+                        </button>
+                        <div class="faq-answer" id="faq-price-2">
+                            <p>Every project includes discovery, UX design, development, QA, launch support, and a handoff package for your team.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question" aria-expanded="false" aria-controls="faq-price-3">
+                            <span>Can you work with internal teams?</span>
+                            <span class="faq-icon" aria-hidden="true">+</span>
+                        </button>
+                        <div class="faq-answer" id="faq-price-3">
+                            <p>Yes. We partner with internal product, marketing, and engineering teams and fit into your existing delivery process.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
     <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h4>ICI Tech</h4>
-                    <p>Building clean, fast, and responsive websites for businesses and communities worldwide.</p>
-                </div>
-                <div class="footer-section">
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="services.html">Services</a></li>
-                        <li><a href="about.html">About</a></li>
-                        <li><a href="pricing.html">Pricing</a></li>
-                        <li><a href="contact.html">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Services</h4>
-                    <ul>
-                        <li><a href="services.html#business">Business Websites</a></li>
-                        <li><a href="services.html#ecommerce">E-Commerce</a></li>
-                        <li><a href="services.html#portfolio">Portfolio Sites</a></li>
-                        <li><a href="services.html#apps">Web Applications</a></li>
-                    </ul>
-                </div>
+        <div class="container footer-grid">
+            <div>
+                <a class="logo footer-logo" href="index.html">ICI Tech</a>
+                <p>Enterprise web experiences and product systems for fast-growth technology teams.</p>
             </div>
-            <div class="footer-bottom">
-                <p>Copyright &copy; 2026 ICI Tech. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="services.html">Services</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
             </div>
         </div>
+        <div class="footer-note">Copyright © 2026 ICI Tech.</div>
     </footer>
-
-    <!-- Back to Top Button -->
-    <a href="#" class="back-to-top" aria-label="Back to top">↑</a>
-
-    <script src="https://cdn.jsdelivr.net/npm/three@0.154.0/build/three.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+    <a href="#top" class="back-to-top" aria-label="Back to top">↑</a>
     <script src="assets/script.js"></script>
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-    <script>
-      AOS.init({ duration: 1000, once: true });
-    </script>
 </body>
 </html>
