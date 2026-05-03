@@ -894,6 +894,7 @@ textarea {
     border-radius: 24px;
     background: rgba(255, 255, 255, 0.03);
     border: 1px solid rgba(255, 255, 255, 0.08);
+    animation: borderGlow 4s ease-in-out infinite;
 }
 
 @media (max-width: 640px) {
@@ -1000,6 +1001,7 @@ textarea {
     background: rgba(255, 255, 255, 0.03);
     border: 1px solid rgba(255, 255, 255, 0.08);
     box-shadow: 0 24px 80px rgba(1, 7, 18, 0.14);
+    animation: borderGlow 4s ease-in-out infinite;
 }
 
 @media (max-width: 640px) {
@@ -1215,6 +1217,7 @@ textarea {
     background: rgba(255, 255, 255, 0.04);
     border: 1px solid rgba(255, 255, 255, 0.08);
     box-shadow: var(--shadow);
+    animation: borderGlow 4s ease-in-out infinite;
 }
 
 @media (max-width: 640px) {
@@ -1264,6 +1267,7 @@ textarea {
     border-radius: 22px;
     background: rgba(255, 255, 255, 0.03);
     border: 1px solid rgba(255, 255, 255, 0.08);
+    animation: borderGlow 4s ease-in-out infinite;
 }
 
 @media (max-width: 640px) {
@@ -1356,6 +1360,7 @@ textarea {
     border-radius: 24px;
     border: 1px solid rgba(255, 255, 255, 0.08);
     background: rgba(255, 255, 255, 0.02);
+    animation: borderGlow 4s ease-in-out infinite;
 }
 
 @media (max-width: 640px) {
@@ -1556,13 +1561,15 @@ textarea {
         box-shadow: 0 20px 90px rgba(1, 7, 18, 0.25);
         opacity: 0;
         visibility: hidden;
+        display: none;
         transform: translateY(-10px);
-        transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s ease;
+        transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s ease, display 0.25s ease;
     }
 
     .nav-menu.active {
         opacity: 1;
         visibility: visible;
+        display: flex;
         transform: translateY(0);
     }
 
@@ -1737,5 +1744,80 @@ textarea {
     100% {
         transform: translateY(-300px);
         opacity: 0;
+    }
+}
+
+/* Cool animations for borders and text */
+@keyframes borderGlow {
+    0% {
+        border-color: rgba(107, 125, 255, 0.2);
+        box-shadow: 0 0 0 rgba(107, 125, 255, 0.1);
+    }
+    50% {
+        border-color: rgba(107, 125, 255, 0.5);
+        box-shadow: 0 0 20px rgba(107, 125, 255, 0.3);
+    }
+    100% {
+        border-color: rgba(107, 125, 255, 0.2);
+        box-shadow: 0 0 0 rgba(107, 125, 255, 0.1);
+    }
+}
+
+@keyframes textFadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInLeft {
+    0% {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.animated-border {
+    animation: borderGlow 3s ease-in-out infinite;
+}
+
+.fade-in {
+    animation: textFadeIn 0.8s ease-out forwards;
+    opacity: 0;
+}
+
+.slide-in-left {
+    animation: slideInLeft 0.8s ease-out forwards;
+    opacity: 0;
+}
+
+/* Stagger animations for multiple elements */
+.fade-in:nth-child(1) { animation-delay: 0.1s; }
+.fade-in:nth-child(2) { animation-delay: 0.2s; }
+.fade-in:nth-child(3) { animation-delay: 0.3s; }
+.fade-in:nth-child(4) { animation-delay: 0.4s; }
+.fade-in:nth-child(5) { animation-delay: 0.5s; }
+
+/* Improve mobile menu */
+.nav-menu.active {
+    animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+    0% {
+        opacity: 0;
+        transform: translateY(-10px) scale(0.95);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
     }
 }
