@@ -37,11 +37,17 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        mobileBreakpoint.addEventListener('change', () => {
-            if (!mobileBreakpoint.matches) {
+        const handleBreakpointChange = (event) => {
+            if (!event.matches) {
                 closeMobileMenu();
             }
-        });
+        };
+
+        if (typeof mobileBreakpoint.addEventListener === 'function') {
+            mobileBreakpoint.addEventListener('change', handleBreakpointChange);
+        } else if (typeof mobileBreakpoint.addListener === 'function') {
+            mobileBreakpoint.addListener(handleBreakpointChange);
+        }
 
         document.addEventListener('click', (event) => {
             if (!navMenu.contains(event.target) && !hamburger.contains(event.target) && navMenu.classList.contains('active')) {
