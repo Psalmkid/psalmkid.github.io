@@ -1,4 +1,4 @@
-﻿@import url('https://fonts.googleapis.com/css?family=Exo:400,700');
+@import url('https://fonts.googleapis.com/css?family=Exo:400,700');
 
 /* Core design system */
 :root {
@@ -1561,15 +1561,16 @@ textarea {
         box-shadow: 0 20px 90px rgba(1, 7, 18, 0.25);
         opacity: 0;
         visibility: hidden;
-        display: none;
+        pointer-events: none;
         transform: translateY(-10px);
-        transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s ease, display 0.25s ease;
+        transform-origin: top right;
+        transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s ease;
     }
 
     .nav-menu.active {
         opacity: 1;
         visibility: visible;
-        display: flex;
+        pointer-events: auto;
         transform: translateY(0);
     }
 
@@ -1590,6 +1591,11 @@ textarea {
 
     .hamburger {
         display: flex;
+    }
+
+    body.menu-open {
+        overflow: hidden;
+        touch-action: none;
     }
 }
 
@@ -1809,6 +1815,27 @@ textarea {
 /* Improve mobile menu */
 .nav-menu.active {
     animation: slideDown 0.3s ease-out;
+}
+
+.reveal {
+    opacity: 0;
+    transform: translateY(22px) scale(0.985);
+    transition: opacity 0.65s ease, transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+    transition-delay: var(--reveal-delay, 0ms);
+    will-change: opacity, transform;
+}
+
+.reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .reveal {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
 }
 
 @keyframes slideDown {
